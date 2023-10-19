@@ -33,7 +33,7 @@ public class SearchController {
     @PostMapping("/results")
     public String displaySearchResults(Model model, @RequestParam String searchType,  @RequestParam String searchTerm){
         ArrayList<Job> jobs = new ArrayList<>();
-        if (searchType.equals("all") || searchTerm.equals("") || searchTerm.equals("all")){
+        if (searchTerm.equals("") || searchTerm.equals("all")){
            jobs = JobData.findAll();
 //           model.addAttribute("title", "All Jobs" );
             model.addAttribute("title", "Jobs With All:");
@@ -45,8 +45,7 @@ public class SearchController {
         model.addAttribute("title", "Jobs With "+ columnChoices.get(searchType)+": "+ searchTerm);
         return "/search";
 
-        //TODO FOR TAM: make it so the page title displays the column.value
-        //TODO FOR TAM: make it so the ALL link says "ALL Jobs"
+
     }
 
 }
